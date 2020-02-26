@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -80,6 +81,17 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Lengkapi away team", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        if (  ((BitmapDrawable)btnHomeLogo.getDrawable()).getBitmap().sameAs(logoHome) ){
+            Toast.makeText(this, "Ganti gambar home team", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if ( ((BitmapDrawable)btnAwayLogo.getDrawable()).getBitmap().sameAs(logoAway)){
+            Toast.makeText(this, "Ganti gambar away team", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         TeamModel teamModel = new TeamModel(etHome.getText().toString(),etAway.getText().toString(), Bitmap.createScaledBitmap(logoHome, 200,200, false), Bitmap.createScaledBitmap(logoAway,200,200, false));
 
