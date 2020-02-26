@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap logoAway;
     private ImageView btnHomeLogo;
     private ImageView btnAwayLogo;
+
+    private boolean changeHomeLogo = false;
+    private boolean changeAwayLogo = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,12 +85,12 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (  ((BitmapDrawable)btnHomeLogo.getDrawable()).getBitmap().sameAs(logoHome) ){
+        if (!changeHomeLogo){
             Toast.makeText(this, "Ganti gambar home team", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if ( ((BitmapDrawable)btnAwayLogo.getDrawable()).getBitmap().sameAs(logoAway)){
+        if (!changeAwayLogo){
             Toast.makeText(this, "Ganti gambar away team", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -117,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                         logoHome = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
                     }
                     btnHomeLogo.setImageBitmap(logoHome);
+                    changeHomeLogo = true;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -133,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                         logoAway = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
                     }
                     btnAwayLogo.setImageBitmap(logoAway);
+                    changeAwayLogo = true;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
